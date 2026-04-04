@@ -1,0 +1,4 @@
+raytracer
+output/*.ppm
+output/*.png
+*.o
