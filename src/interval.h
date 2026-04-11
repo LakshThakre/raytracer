@@ -1,7 +1,7 @@
 #ifndef INTERVAL_H
 #define INTERVAL_H
 
-#include "essential.h";
+#include "essential.h"
 
 class interval
 {
