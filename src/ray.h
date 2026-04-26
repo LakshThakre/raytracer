@@ -3,24 +3,28 @@
 
 #include "vec3.h"
 
-class ray
-{
+class ray {
 public:
-  ray() {}
+    ray() {}
 
-  ray(const point3 &origin, const vec3 &direction) : orig(origin), dir(direction) {}
+    // 2-arg constructor (used by sphere's center ray)
+    ray(const point3& origin, const vec3& direction)
+        : orig(origin), dir(direction), tm(0.0) {}
 
-  const point3 &origin() const { return orig; }
-  const vec3 &direction() const { return dir; }
+    // 3-arg constructor (used by camera with motion blur)
+    ray(const point3& origin, const vec3& direction, double time)
+        : orig(origin), dir(direction), tm(time) {}
 
-  point3 at(double t) const
-  {
-    return orig + t * dir;
-  }
+    const point3& origin()    const { return orig; }
+    const vec3&   direction() const { return dir;  }
+    double        time()      const { return tm;   }
+
+    point3 at(double t) const { return orig + t * dir; }
 
 private:
-  point3 orig;
-  vec3 dir;
+    point3 orig;
+    vec3   dir;
+    double tm;
 };
 
 #endif
