@@ -2,6 +2,7 @@
 #define TEXTURE_H
 
 #include "essential.h"
+#include "perlin.h"
 
 class texture{
     public:
@@ -9,6 +10,19 @@ class texture{
 
         virtual color value(double u, double v, const point3& p) const = 0;
 };
+
+class noise_texture : public texture {
+private:
+  perlin noise;
+public:
+  noise_texture() {}
+
+  color value(double u, double v, const point3& p) const override {
+    return noise.noise(p) * color(1,1,1);
+  }
+};
+
+
 
 class solid_color : public texture{
     public:
